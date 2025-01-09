@@ -4,19 +4,22 @@
     <title>Histogramme des temperatures</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
+  
     <script>
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
      function drawBackgroundColor() {
-    function drawChart(data) {
+    function drawChart() {
+      
     // Convertir les données récupérées en un tableau utilisable par Google Charts
-    var dataTable = new google.visualization.DataTable();
+    var dataTable = google.visualization.arrayToDataTable();
     dataTable.addColumn('string', 'Date');
     dataTable.addColumn('number', 'Valeur');
     data.results.forEach(entry => {
       var date = new Date(entry.Jour * 1000);
       dataTable.addRow([date.toLocaleDateString(), entry.temp]);
     });
+      
     // Configurer les options de l'histogramme
     var options = {
       title: 'Histogramme des températures de Tawarano',
