@@ -39,5 +39,16 @@ def monhistogramme():
 def moncontact():
     return render_template("contact.html")
 
+@app.route('/commits/')
+def commits(date_string):
+        response = urlopen('https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits')
+        raw_content = response.read()
+        json_content = json.loads(raw_content.decode('utf-8'))
+        results = []
+         for list_element in json_content.get('list', []):
+           date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
+           minutes = date_object.minute
+        return jsonify({'minutes': minutes})
+
 if __name__ == "__main__":
   app.run(debug=True)
