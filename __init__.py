@@ -49,6 +49,7 @@ def commits(date_string):
            date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
            minutes = date_object.minute
         return jsonify({'minutes': minutes})
+        return render_template("commits.html")
 
 if __name__ == "__main__":
   app.run(debug=True)
