@@ -9,7 +9,7 @@
       google.charts.load('current', { packages: ['corechart'] });
       google.charts.setOnLoadCallback(drawBackgroundColor);
      function drawBackgroundColor() {
-    function drawChart() {
+    function drawChart(data) {
       
     // Convertir les données récupérées en un tableau utilisable par Google Charts
     var dataTable = new google.visualization.DataTable();
@@ -30,8 +30,9 @@
     };
 
       // Dessiner l'histogramme
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-    chart.draw(dataTable, options);
+    
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
   }
        
   // Récupération de données depuis notre API /tawarano/
